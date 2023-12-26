@@ -1,0 +1,235 @@
+swagger: "2.0"
+info:
+  title: Transactions API
+  version: 1.0.0
+host: localhost:3001
+basePath: /api/v1
+schemes:
+  - http
+paths:
+  /user/transactions:
+    get:
+      security:
+        - Bearer: []
+      summary: Retrieve all transactions for the current month
+      description: Returns a list of all transactions made by the user in the specified month.
+      parameters:
+        - in: query
+          name: month
+          type: string
+          description: The month for which to retrieve the transactions, in 'year-month' format
+          default: "2023-11"
+          required: true
+      responses:
+        200:
+          description: List of transactions for the specified month
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Transaction"
+        400:
+          description: Invalid request
+        404:
+          description: Unknown item error response
+        500:
+          description: Internal Server Error
+
+  /user/transactions/{transactionId}:
+    get:
+      security:
+        - Bearer: []
+      summary: Retrieve details of a specific transaction
+      description: Provides detailed information about a specific transaction identified by its ID.
+      parameters:
+        - in: path
+          name: transactionId
+          type: string
+          required: true
+          description: Transaction identifier
+        - in: query
+          name: month
+          type: string
+          required: true
+          description: The month for which to retrieve the transaction, in 'year-month' format
+      responses:
+        200:
+          description: Transaction details
+          schema:
+            $ref: "#/definitions/Transaction"
+        404:
+          description: Transaction not found
+        500:
+          description: Internal Server Error
+
+    post:
+      security:
+        - Bearer: []
+      summary: Add a new note for a transaction
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          description: JWT token for authentication
+          required: true
+        - in: body
+          name: note
+          description: Note details
+          schema:
+            type: object
+            properties:
+              transactionId:
+                type: string
+                description: Unique identifier of the transaction
+              note:
+                type: string
+                description: Note to be added to the transaction
+          required: true
+      responses:
+        200:
+          description: Note successfully added to the transaction
+        400:
+          description: Invalid request (incorrect note data)
+        404:
+          description: Transaction not found
+        500:
+          description: Internal Server Error
+
+
+    put:
+      security:
+        - Bearer: []
+      summary: Modify a transaction's category and note
+      parameters:
+        - in: path
+          name: transactionId
+          type: string
+          required: true
+          description: Transaction identifier
+        - in: body
+          name: transactionUpdate
+          required: true
+          description: Details to update the transaction's category and note
+          schema:
+            type: object
+            properties:
+              category:
+                type: string
+                description: Category of the transaction
+              note:
+                type: string
+                description: Note associated with the transaction
+      responses:
+        200:
+          description: Transaction category and note successfully updated
+        400:
+          description: Invalid request (incorrect update data)
+        404:
+          description: Transaction not found
+        500:
+          description: Internal Server Error
+
+
+    delete:
+      security:
+        - Bearer: []
+      summary: Delete a note from a transaction
+      parameters:
+        - in: path
+          name: transactionId
+          type: string
+          required: true
+          description: Transaction identifier
+        - in: query
+          name: noteId
+          type: string
+          required: true
+          description: Identifier of the note to be deleted
+      responses:
+        200:
+          description: Note successfully deleted from the transaction
+        404:
+          description: Transaction or note not found
+        500:
+          description: Internal Server Error
+
+  /user/accounts/types:
+    get:
+      security:
+        - Bearer: []
+      summary: Retrieve different types of accounts for a user
+      description: Lists all account types available to the user, along with their details such as balance and description.
+      responses:
+        200:
+          description: List of account types with details
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                type:
+                  type: string
+                  description: Type of the account
+                description:
+                  type: string
+                  description: Description of the account type
+                balance:
+                  type: number
+                  format: float
+                  description: Current balance of the account type
+                transactionCount:
+                  type: integer
+                  description: The total number of transactions
+
+          400:
+            description: Invalid request
+          404:
+            description: User not found
+          500:
+            description: Internal Server Error
+
+definitions:
+Transaction:
+  type: object
+  properties:
+    id:
+      type: string
+      description: Unique transaction identifier
+    type:
+      type: string
+      description: Type of account associated with the transaction
+    month:
+      type: string
+      description: The month of the transaction
+    date:
+      type: string
+      format: date
+      description: Date of the transaction
+    description:
+      type: string
+      description: Description of the transaction
+    amount:
+      type: number
+      format: float
+      description: Amount involved in the transaction
+    balance:
+      type: number
+      format: float
+      description: Account balance after the transaction
+    category:
+      type: string
+      description: Category of the transaction
+    note:
+      type: string
+      description: Note associated with the transaction
+  required:
+    - id
+    - type
+    - date
+    - amount
+
+securityDefinitions:
+Bearer:
+  type: apiKey
+  name: Authorization
+  in: header
+  description: JWT Authorization header used for security
