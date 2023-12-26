@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateProfile } from '../../app/redux/user/actionUser';
-
+import './UserHeader.css'
 export default function UserHeader() {
   const dispatch = useDispatch();
   const { firstName, lastName, token } = useSelector(state => ({
@@ -32,7 +32,7 @@ export default function UserHeader() {
     <div className="header">
       {!isEditing ? (
         <>
-          <h1>Welcome back<br />{`${firstName} ${lastName}`} !</h1>
+          <h1 className="h1-welcome">Welcome back<br />{`${firstName} ${lastName}`} !</h1>
           <button onClick={toggleEdit} className="edit-button">Edit Name</button>
         </>
       ) : (
@@ -53,8 +53,8 @@ export default function UserHeader() {
             />
           </div>
           <div className="editNameButtons">
-            <button type="submit" className="save-button">Save</button>
-            <button type="button" onClick={toggleEdit} className="cancel-button">Cancel</button>
+            <button type="submit" className="edit-button">Save</button>
+            <button type="button" onClick={toggleEdit} className="edit-button">Cancel</button>
           </div>
         </form>
       )}

@@ -23,7 +23,7 @@ export default function User() {
   
   return (
     <>
-      <main className="main bg-dark bg-padding">
+      <main className="main bg-grey bg-padding">
         <UserHeader />
         <h2 className="sr-only">Accounts</h2>
         <Account

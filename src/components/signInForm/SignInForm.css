@@ -14,9 +14,8 @@
   box-sizing: border-box;
   background-color: white;
   width: 300px;
-  margin: 0 auto;
-  margin-top: 3rem;
-  padding: 2rem;
+  margin: 50px auto;
+  padding: 50px;
 }
 
 .sign-in-icon {
