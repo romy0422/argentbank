@@ -9,7 +9,7 @@ export default function UserHeader() {
     ...state.userProfile,
     ...state.userLogin
   }));
-
+  const { error } = useSelector(state=> state.userProfile)
   // stock dans des etats provisoire les mise à jour des informations de l'utilisateur
   const [newFirstName, setNewFirstName] = useState(firstName);
   const [newLastName, setNewLastName] = useState(lastName);
@@ -63,6 +63,8 @@ export default function UserHeader() {
           </div>
         </form>
       )}
+     { error!== null &&<p className="error-display"> Failed Update: {error}</p> }
+
     </div>
   );
 }

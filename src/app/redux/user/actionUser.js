@@ -3,6 +3,7 @@ import {
   USER_PROFILE_FAIL,
   USER_PROFILE_UPDATE,
   USER_PROFILE_UPDATE_SUCCESS,
+  USER_PROFILE_UPDATE_FAIL
 } from './reducerUser';
 import axios from 'axios';
 
@@ -52,8 +53,10 @@ export const updateProfile = (token, newFirstName, newLastName) => async (dispat
     dispatch({ type: USER_PROFILE_UPDATE_SUCCESS });
   } catch (error) {
     dispatch({
-      type: USER_PROFILE_FAIL,
-      payload: error.response?.data.message || error.message,
+      type: USER_PROFILE_UPDATE_FAIL,
+      payload: error.response && error.response.data.message
+      ? error.response.data.message
+      : error.message,
     });
   }
 };

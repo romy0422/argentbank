@@ -48,3 +48,8 @@ h1 {
   white-space: nowrap;
   padding: 10px;
 }
+
+.error-display{
+  color: red;
+  font-size: larger;
+}

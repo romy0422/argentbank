@@ -65,7 +65,7 @@ export default function SignInForm() {
           Sign In
         </button>
         {error && (
-          <div>
+          <div className="error-display">
             <br />
             {error}
           </div>

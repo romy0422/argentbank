@@ -45,3 +45,8 @@
   padding: 5px;
   font-size: 1.2rem;
 }
+
+.error-display{
+  color:red;
+  font-size: larger;
+}

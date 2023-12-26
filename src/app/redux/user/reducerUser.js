@@ -3,6 +3,7 @@ export const USER_PROFILE_FAIL = 'USER_PROFILE_FAIL';
 export const USER_PROFILE_RESET = 'USER_PROFILE_RESET';
 export const USER_PROFILE_UPDATE = 'USER_PROFILE_UPDATE';
 export const USER_PROFILE_UPDATE_SUCCESS = 'USER_PROFILE_UPDATE_SUCCESS';
+export const USER_PROFILE_UPDATE_FAIL ='USER_PROFILE_UPDATE_FAIL';
 
 // les states pour la partie profil
 const INITIAL_STATE = {
@@ -29,8 +30,15 @@ export const userReducer = (state = INITIAL_STATE, action) => {
     case USER_PROFILE_UPDATE_SUCCESS:
       return {
         ...state,
-        profileUpdated: true
+        profileUpdated: true,
+        error:null
       };
+    case USER_PROFILE_UPDATE_FAIL:
+      return{
+        ...state,
+        error: action.payload,
+        profileUpdated:false
+      }
     case USER_PROFILE_FAIL:
       return {
         ...state,
