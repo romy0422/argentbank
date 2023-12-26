@@ -2,12 +2,13 @@ export const USER_LOGIN_SUCCESS = 'USER_LOGIN_SUCCESS'
 export const USER_LOGIN_FAIL = 'USER_LOGIN_FAIL'
 export const USER_LOGOUT = 'USER_LOGOUT'
 
+// les états initials du reducer
 const INITIAL_STATE = {
   isLogged: false,
   token: '',
   rememberMe: false,
 }
-
+// selon le type des actions, met à jour les states et les retourne pour la partie reducer login
 export const loginReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case USER_LOGIN_SUCCESS:

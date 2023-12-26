@@ -5,6 +5,8 @@ import User from './pages/User/User'
 import Error from './components/error404/Error'
 import Navigation from './components/navigation/Navigation'
 import Footer from './components/footer/Footer'
+
+// gère les urls et l'affichage des composants avec react-router
 export default function App() {
   return (
     

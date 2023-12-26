@@ -6,6 +6,7 @@ import {
 } from './reducerUser';
 import axios from 'axios';
 
+// gère les dispatch et les appel d'api en rapport avec la récupération du profil
 export const userProfile = (token) => async (dispatch) => {
   try {
     const config = {
@@ -30,7 +31,7 @@ export const userProfile = (token) => async (dispatch) => {
 };
 
 
-
+// gère les dispatch et l'appel d'api en rapport avec l'update des informations du profil
 export const updateProfile = (token, newFirstName, newLastName) => async (dispatch) => {
   try {
     const config = {

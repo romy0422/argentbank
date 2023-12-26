@@ -1,5 +1,6 @@
 import './Footer.css'
 
+// retourne le pieds du site
 export default function Footer() {
   return (
     <footer className="footer">

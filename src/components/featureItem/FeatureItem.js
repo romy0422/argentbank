@@ -1,5 +1,5 @@
 import './FeatureItem.css'
-
+// retourne les elements de la landingpage
 export default function FeatureItem(props) {
   return (
     <div className="feature-item">

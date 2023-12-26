@@ -9,7 +9,7 @@ import './index.css';
 
 const container = document.getElementById('root'); 
 const root = createRoot(container); 
-
+// l'entrée de l'application
 root.render(
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>

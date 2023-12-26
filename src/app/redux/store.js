@@ -6,6 +6,8 @@ import { loginReducer } from './login/reducerLogin';
 import { persistStore, persistReducer, createTransform } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
+// gère la valeur du token et du status de la connection dans le cache du navigateur avec redux persist
+// la configuration ici active ou desactive la mise en cache de la valeur choisie
 const LoginTransform = createTransform(
   (inboundState, key) => {
     if (key === 'userLogin' && !inboundState.rememberMe) {
@@ -17,6 +19,7 @@ const LoginTransform = createTransform(
   { whitelist: ['userLogin'] }
 );
 
+// configure redux persist, informe ce qui sera stocké dans le cache
 const persistConfig = {
   key: 'root',
   storage,
@@ -24,6 +27,7 @@ const persistConfig = {
   transforms: [LoginTransform], 
 };
 
+// conbine les reducers
 const rootReducer = combineReducers({
   userLogin: loginReducer,
   userProfile: userReducer,

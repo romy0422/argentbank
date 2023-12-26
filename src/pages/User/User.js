@@ -4,17 +4,16 @@ import UserHeader from '../../components/userHeader/UserHeader'
 import { useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router'
-
-// Styles
 import './User.css'
 
-
+// affiche le profil de l'utilisateur
 export default function User() {
   document.title = "Argent Bank - User's Page"
   let navigate = useNavigate()
   
   const { token } = useSelector((state) => state?.userLogin)
   
+  // vérifie la présence du token pour sécuriser l'acces au profil
   useEffect(() => {
     if (!token) {
       navigate('/')

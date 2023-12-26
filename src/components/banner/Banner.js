@@ -1,5 +1,5 @@
 import './Banner.css'
-
+// retourne le contenu hero, la bannière
 export default function Banner() {
   return (
     <div className="hero">

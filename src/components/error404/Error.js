@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import './error.css'
+// retourne le composant pour l'erreur 404
 function Error(){
   return (
     <div className="error-container">

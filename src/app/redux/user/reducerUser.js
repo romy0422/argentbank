@@ -4,6 +4,7 @@ export const USER_PROFILE_RESET = 'USER_PROFILE_RESET';
 export const USER_PROFILE_UPDATE = 'USER_PROFILE_UPDATE';
 export const USER_PROFILE_UPDATE_SUCCESS = 'USER_PROFILE_UPDATE_SUCCESS';
 
+// les states pour la partie profil
 const INITIAL_STATE = {
   success: false,
   profileUpdated: false,
@@ -12,6 +13,7 @@ const INITIAL_STATE = {
   error: null
 };
 
+// le reducer pour le profil
 export const userReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case USER_PROFILE_SUCCESS:
