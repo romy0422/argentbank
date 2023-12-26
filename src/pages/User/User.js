@@ -1,6 +1,4 @@
 // Components
-import Footer from '../../components/footer/Footer'
-import Navigation from '../../components/navigation/Navigation'
 import Account from '../../components/account/Account'
 import UserHeader from '../../components/userHeader/UserHeader'
 import { useSelector } from 'react-redux'
@@ -25,7 +23,6 @@ export default function User() {
   
   return (
     <>
-      <Navigation />
       <main className="main bg-dark bg-padding">
         <UserHeader />
         <h2 className="sr-only">Accounts</h2>
@@ -45,7 +42,6 @@ export default function User() {
           description="Current Balance"
         />
       </main>
-      <Footer />
     </>
   )
 }

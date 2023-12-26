@@ -5,9 +5,7 @@ import iconSecurity from '../../components/featureItem/icon-security.png'
 
 // Components
 import Banner from '../../components/banner/Banner'
-import Navigation from '../../components/navigation/Navigation'
 import FeatureItem from '../../components/featureItem/FeatureItem'
-import Footer from '../../components/footer/Footer'
 
 // Styles
 import './Index.css'
@@ -36,7 +34,6 @@ export default function Index() {
 
   return (
     <>
-      <Navigation />
       <main>
         <Banner />
         <section className="features">
@@ -57,7 +54,6 @@ export default function Index() {
           />
         </section>
       </main>
-      <Footer />
     </>
   )
 }
