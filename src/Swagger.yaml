@@ -6,6 +6,7 @@ host: localhost:3001
 basePath: /api/v1
 schemes:
   - http
+  
 paths:
   /user/transactions:
     get:
@@ -66,6 +67,11 @@ paths:
         - Bearer: []
       summary: Add a new note for a transaction
       parameters:
+        - in: path
+          name: transactionId
+          type: string
+          required: true
+          description: Transaction identifier
         - in: header
           name: Authorization
           type: string
@@ -180,56 +186,53 @@ paths:
                   type: integer
                   description: The total number of transactions
 
-          400:
-            description: Invalid request
-          404:
-            description: User not found
-          500:
-            description: Internal Server Error
+        400:
+          description: Invalid request
+        404:
+          description: User not found
+        500:
+          description: Internal Server Error
 
 definitions:
-Transaction:
-  type: object
-  properties:
-    id:
-      type: string
-      description: Unique transaction identifier
-    type:
-      type: string
-      description: Type of account associated with the transaction
-    month:
-      type: string
-      description: The month of the transaction
-    date:
-      type: string
-      format: date
-      description: Date of the transaction
-    description:
-      type: string
-      description: Description of the transaction
-    amount:
-      type: number
-      format: float
-      description: Amount involved in the transaction
-    balance:
-      type: number
-      format: float
-      description: Account balance after the transaction
-    category:
-      type: string
-      description: Category of the transaction
-    note:
-      type: string
-      description: Note associated with the transaction
-  required:
-    - id
-    - type
-    - date
-    - amount
+  Transaction:
+    type: object
+    properties:
+      id:
+        type: string
+        description: Unique transaction identifier
+      type:
+        type: string
+        description: Type of account associated with the transaction
+      month:
+        type: string
+        description: The month of the transaction
+      date:
+        type: string
+        format: date
+        description: Date of the transaction
+      description:
+        type: string
+        description: Description of the transaction
+      amount:
+        type: number
+        format: float
+        description: Amount involved in the transaction
+      balance:
+        type: number
+        format: float
+        description: Account balance after the transaction
+      category:
+        type: string
+        description: Category of the transaction
+    required:
+      - id
+      - type
+      - date
+      - amount
 
 securityDefinitions:
-Bearer:
-  type: apiKey
-  name: Authorization
-  in: header
-  description: JWT Authorization header used for security
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
+    description: JWT Authorization header used for security

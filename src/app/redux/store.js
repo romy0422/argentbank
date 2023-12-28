@@ -35,7 +35,7 @@ const rootReducer = combineReducers({
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-const middleware = [thunk];
+const middleware = [thunk];// traite avec thunk pour utiliser dispatch dans des fonctions imbriqué dans des dispatch
 
 const store = createStore(
   persistedReducer,
