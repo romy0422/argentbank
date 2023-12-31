@@ -8,7 +8,7 @@ schemes:
   - http
 
 paths:
-  /users/{userId}/transactions:
+  /users/transactions:
     get:
       security:
         - Bearer: []
@@ -20,16 +20,11 @@ paths:
           type: string
           description: The month for which to retrieve transactions, in 'year-month' format. e.g., "2023-11"
           required: true
-        - in: path
-          name: userId
-          type: string
-          required: true
-          description: Require the user's ID to retrieve their own transaction.
         - in: query
-          name: accountType
+          name: accountId
           type: string
           required: true
-          description: The account type to retrieve transactions, in 'current-account' or 'saving-account' etc.
+          description: The account Id, retrieve one selected account's transactions
       responses:
         200:
           description: List of transactions for the specified month
@@ -110,7 +105,7 @@ definitions:
       id:
         type: string
         description: Unique transaction identifier
-      accountType:
+      accountId:
         type: string
         description: Type of account associated with the transaction
       month:
@@ -140,7 +135,7 @@ definitions:
     required:
       - userId
       - id
-      - accountType
+      - accountId
       - date
       - amount
 
